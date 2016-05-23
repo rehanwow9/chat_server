@@ -1,0 +1,5 @@
+Twisted==16.2.0
+autobahn==0.14.0
+six==1.10.0
+txaio==2.5.1
+zope.interface==4.1.3

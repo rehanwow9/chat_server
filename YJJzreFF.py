@@ -45,7 +45,7 @@ class ClientModel(object):
     def __init__(self, client):
         self.client = client
         self.lastMessageTime = datetime.datetime.now()
-        self.lastMessage = ""
+        self.lastMessage = None
 
     def updateLastMessage(self, msg):
         self.lastMessage = msg

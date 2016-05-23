@@ -41,17 +41,21 @@ class SomeServerProtocol(WebSocketServerProtocol):
 
 import datetime
 class ClientModel(object):
-    """docstring for ClientModel"""
     def __init__(self, client):
+        """Store the client, and initialize lastMessage sent
+        and the time at which it was sent"""
         self.client = client
         self.lastMessageTime = datetime.datetime.now()
-        self.lastMessage = ""
+        self.lastMessage = None
 
     def updateLastMessage(self, msg):
+        """After a successful message sent update the lastMessage"""
         self.lastMessage = msg
         self.lastMessageTime = datetime.datetime.now()
 
     def isDuplicate(self, msg):
+        """Check whether the last message sent is same as the current one to be sent
+        and the difference in time is no more than 5 seconds"""
         return (self.lastMessage == msg) and ((datetime.datetime.now() - self.lastMessageTime).seconds < 5)
 
 class ChatRouletteFactory(WebSocketServerFactory):
